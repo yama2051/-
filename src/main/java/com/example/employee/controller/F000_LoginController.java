@@ -15,7 +15,7 @@ import com.example.employee.service.EmployeeService;
  * ログイン時に使用される
  */
 @Controller
-public class LoginController {
+public class F000_LoginController {
 
 	@Autowired
 	private EmployeeService employeeService;

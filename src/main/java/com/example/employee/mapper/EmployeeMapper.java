@@ -17,5 +17,8 @@ public interface EmployeeMapper {
 	List<EmployeeEntity> findAll(EmployeeSearchForm form);
 
 	void registMem(EmployeeEntity empEntForm);
+	
+	//詳細画面用
+	EmployeeEntity findMemDetail(String employeeId);
 
 }

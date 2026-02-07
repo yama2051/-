@@ -20,4 +20,8 @@ public class EmployeeEntity {
 		// TODO 自動生成されたメソッド・スタブ
 		
 	}
+	
+	//詳細情報
+	private EmployeeDeitalInfEntity detail;
+	
 }

@@ -21,7 +21,10 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeLoginMapper employeeLoginMapper;
 	
-	//ログイン情報の検索
+	/**ログイン情報の検索
+	 * @param employeeId
+	 * @return
+	 */
 	public EmployeeLoginEntity findPassOfLogin(String employeeId) {
 		EmployeeLoginEntity loginEntity = employeeLoginMapper.findPass(employeeId);
 		return loginEntity;
@@ -31,15 +34,22 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 	
-	//全件検索
+	
+	/**全件検索
+	 * @param form
+	 * @return
+	 */
 	public List<EmployeeEntity> findAllShokuin(EmployeeSearchForm form) {
 		
 		return employeeMapper.findAll(form);
 	}
 	
-	//職員登録
+	/**職員登録用
+	 * @param form
+	 */
+	@SuppressWarnings("null")
 	public void registMember(EmployeeForm form) {
-		EmployeeEntity empEntForm = null;
+		EmployeeEntity empEntForm = new EmployeeEntity();;
 		empEntForm.setLastName(form.getLastName());
 		empEntForm.setFirstName(form.getFirstName());
 		empEntForm.setEmployeeId(form.getEmployeeId());
@@ -50,8 +60,39 @@ public class EmployeeService {
 		
 		employeeMapper.registMem(empEntForm);
 	}
+
 	
-	//職員詳細画面の表示
+	/**職員詳細
+	 * 
+	 */
+	@SuppressWarnings("null")
+	public EmployeeForm detailMember(String employeeId) {
+		
+		EmployeeEntity detailEnt = employeeMapper.findMemDetail(employeeId);
+		
+		if (detailEnt == null) {
+	        return null; 
+	    }
+		
+		EmployeeForm empDetailForm = new EmployeeForm();;
+		// 基本情報（employeeテーブル分）
+		empDetailForm.setEmployeeId(detailEnt.getEmployeeId());
+		empDetailForm.setLastName(detailEnt.getLastName());
+		empDetailForm.setFirstName(detailEnt.getFirstName());
+		empDetailForm.setDepartmentId(detailEnt.getDepartmentId());
+		empDetailForm.setStatus(detailEnt.getStatus());
+        
+        // 詳細情報（employee_detailsテーブル分）
+        // Entityを分けた場合は entity.getDetail().getEmail() のように取得
+        if (detailEnt.getDetail() != null) {
+        	empDetailForm.setEmail(detailEnt.getDetail().getEmail());
+        	empDetailForm.setExtensionNumber(detailEnt.getDetail().getExtensionNumber());
+        	empDetailForm.setHireDate(detailEnt.getDetail().getHireDate());
+        	empDetailForm.setMemo(detailEnt.getDetail().getMemo());
+        }
+		
+		return empDetailForm;
+	}
 	
 	
 	

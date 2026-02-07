@@ -15,7 +15,7 @@ import com.example.employee.service.EmployeeService;
  * 検索処理用
  */
 @Controller
-public class EmployeeSearchController {
+public class F001_EmployeeSearchController {
 	
 	@Autowired
 	private EmployeeService employeeservice;

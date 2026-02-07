@@ -13,7 +13,6 @@
 	</header>
 	
 	<main>
-	
 		<section id="memberList">
 		
 			<form action="detail" method="post">
@@ -31,19 +30,23 @@
 						<td>${emp.lastName}${emp.firstName}</td>
 						<td>${emp.departmentId}</td>
 						<td>${emp.status}</td>
+						<td><a href="detail?id=${emp.employeeId}">詳細</a>	</td>
 					</tr>
 				</c:forEach>
 				
 				
 			</table>
-				<a href="detail?id=${emp.employeeId}">詳細</a>	
-				<button type="submit" formacation="regist">登録</button>	
+	
 				<button type="submit" formacation="delete">削除</button>	
 			</form>
 		
 		</section>
 	</main>
 	
-
+	<footer>
+		<form action="register" method="post">
+			<button type="submit" >登録</button>	
+		</form>
+	</footer>
 </body>
 </html>

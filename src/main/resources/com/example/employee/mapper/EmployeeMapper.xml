@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.employee.mapper.EmployeeMapper">
 
-	<resultMap id="EmployeeResultMap" type="com.example.employee.entity.EmployeeEntity">
+	<resultMap id="DetailedEmployeeResultMap" type="com.example.employee.entity.EmployeeEntity">
 		<id column="employee_id" property="employeeId"></id>
 		<result column="last_name" property="lastName"></result>
 		<result column="first_name" property="firstName"></result>
@@ -13,10 +13,19 @@
 		<result column="delete_flg" property="deleteFlg"></result>
 		<result column="created_at" property="createdAt"></result>
 		<result column="updated_at" property="updatedAt"></result>
+		
+		<!--詳細情報-->
+		<association property="detail" javaType="com.example.employee.entity.EmployeeDeitalInfEntity">
+        	<result column="email" property="email" />
+        	<result column="extension_number" property="extensionNumber" />
+        	<result column="hire_date" property="hireDate" />
+        	<result column="memo" property="memo" />
+    	</association>
+    	
 	</resultMap>
 	
 	<!--検索用（全件取得）-->
-	<select	id="findAll" resultMap="EmployeeResultMap">
+	<select	id="findAll" resultMap="DetailedEmployeeResultMap">
 		SELECT 
         	* FROM 
         employee
@@ -42,6 +51,27 @@
 		INSERT EMPLOYEE(employee_id,last_name,first_name,status,delete_flg,created_at,updated_at)
 		VALUES(#{employeeId},#{lastName},#{firstName},#{status},#{deleteFlg},#{createdAt},#{updatedAt})
 	</insert>
+	
+	<!--詳細画面用-->
+	<select id="findMemDetail" resultMap="DetailedEmployeeResultMap">
+    SELECT
+        e.employee_id,
+        e.last_name,
+        e.first_name,
+        e.department_id,
+        e.status,
+        ed.email,
+        ed.extension_number,
+        ed.hire_date,
+        ed.memo
+    FROM
+        employee e
+    LEFT JOIN 
+        employee_details ed ON e.employee_id = ed.employee_id
+    WHERE
+        e.employee_id = #{employeeId}
+        AND e.delete_flg = '0'
+	</select>
 	
 
 
