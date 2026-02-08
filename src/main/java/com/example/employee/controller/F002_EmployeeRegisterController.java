@@ -29,7 +29,7 @@ public class F002_EmployeeRegisterController {
 	
 	public String registMember() {
 		
-		return "resistPage";
+		return "registPage";
 	}
 	
 	/**登録完了
@@ -42,6 +42,9 @@ public class F002_EmployeeRegisterController {
 	public String registFin(EmployeeForm employeeForm,Model model) {
 		
 		List<EmployeeForm> memberList = new ArrayList<>();
+		
+		employeeservice.registMember(employeeForm);
+		employeeservice.registDetailMember(employeeForm);
 		
 		memberList.add(employeeForm);
 		

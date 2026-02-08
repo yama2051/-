@@ -26,6 +26,7 @@ public class F001_EmployeeSearchController {
 	public String getResult(EmployeeSearchForm employeeSearchForm,Model model) {
 		//デバッグ用
 		System.out.println("確認:"+employeeSearchForm.getEmployeeId());
+		System.out.println("在職区分"+employeeSearchForm.getStatus());
 		
 		employeeEntityForm = employeeservice.findAllShokuin(employeeSearchForm);
 				

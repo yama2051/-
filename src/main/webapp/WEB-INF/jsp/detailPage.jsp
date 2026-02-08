@@ -63,6 +63,10 @@
             	<input type="hidden" name="employeeId" value="${detailForm.employeeId}">
             	<button type="submit" class="btn btn-edit">編集する</button>
         	</form>
+        	<form action="/employee/delete" method="post">
+        		<input type="hidden" name="employeeId" value="${detailForm.employeeId}">
+            	<button type="submit" class="btn btn-edit" onclick="return confirm('選択した社員を削除しますか？')">削除する</button>
+        	</form>
     	</div>
 	</footer>
 	

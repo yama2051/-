@@ -48,9 +48,50 @@
 	
 	<!--登録用-->
 	<insert id="registMem">
-		INSERT EMPLOYEE(employee_id,last_name,first_name,status,delete_flg,created_at,updated_at)
+		INSERT INTO EMPLOYEE(employee_id,last_name,first_name,status,delete_flg,created_at,updated_at)
 		VALUES(#{employeeId},#{lastName},#{firstName},#{status},#{deleteFlg},#{createdAt},#{updatedAt})
 	</insert>
+	
+	<insert id="registDetailMem">
+	INSERT INTO employee_details (
+        employee_id,
+        email,
+        extension_number,
+        hire_date,
+        memo
+    ) VALUES (
+        #{employeeId},
+        #{email},
+        #{extensionNumber},
+        #{hireDate}::date,
+        #{memo}
+    )
+	</insert>
+	
+	<!--更新用-->
+	<update id="updateBasic">
+	UPDATE employee
+    SET
+        last_name = #{lastName},
+        first_name = #{firstName},
+        department_id = #{departmentId},
+        status = #{status},
+        updated_at = CURRENT_TIMESTAMP
+    WHERE
+        employee_id = #{employeeId}
+	</update>
+	
+	<update id="updateDetail">
+	UPDATE employee_details
+    SET
+        email = #{email},
+        extension_number = #{extensionNumber},
+        hire_date = #{hireDate}::date,
+        memo = #{memo}
+    WHERE
+        employee_id = #{employeeId}
+	
+	</update>
 	
 	<!--詳細画面用-->
 	<select id="findMemDetail" resultMap="DetailedEmployeeResultMap">
@@ -72,6 +113,17 @@
         e.employee_id = #{employeeId}
         AND e.delete_flg = '0'
 	</select>
+	
+	<!--論理削除用-->
+	<update id="delete">
+	UPDATE employee
+	SET
+		delete_flg='1',
+		updated_at = #{updatedAt}
+	WHERE
+		employee_id = #{employeeId}
+	
+	</update>
 	
 
 

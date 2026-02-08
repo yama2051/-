@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +28,13 @@
 						<td>${emp.employeeId}</td>
 						<td>${emp.lastName}${emp.firstName}</td>
 						<td>${emp.departmentId}</td>
-						<td>${emp.status}</td>
+						<td>
+							<c:choose>
+                   				<c:when test="${emp.status == '0'}">在職</c:when>
+                   			 	<c:when test="${emp.status == '1'}">休職</c:when>
+                    			<c:otherwise>退職</c:otherwise>
+                			</c:choose>
+						</td>
 						<td><a href="detail?id=${emp.employeeId}">詳細</a>	</td>
 					</tr>
 				</c:forEach>
@@ -37,7 +42,7 @@
 				
 			</table>
 	
-				<button type="submit" formacation="delete">削除</button>	
+				<button type="submit" formaction="delete" onclick="return confirm('選択した社員を削除しますか？')">削除</button>	
 			</form>
 		
 		</section>

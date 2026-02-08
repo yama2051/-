@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class EmployeeDeitalInfEntity {
 
+		private String employeeId;
 	    private String email;
 	    private String extensionNumber;
 	    private String hireDate;

@@ -14,8 +14,8 @@ public class EmployeeSearchForm {
 	private String lastName;
 	private String firstName;
 	private String departmentId;
-	private char status;
-	private char deleteFlg;
+	private String status;
+	private String deleteFlg;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
 }

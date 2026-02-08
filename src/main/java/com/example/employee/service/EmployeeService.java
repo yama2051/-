@@ -1,10 +1,12 @@
 package com.example.employee.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.employee.entity.EmployeeDeitalInfEntity;
 import com.example.employee.entity.EmployeeEntity;
 import com.example.employee.entity.EmployeeLoginEntity;
 import com.example.employee.form.EmployeeForm;
@@ -54,11 +56,34 @@ public class EmployeeService {
 		empEntForm.setFirstName(form.getFirstName());
 		empEntForm.setEmployeeId(form.getEmployeeId());
 		empEntForm.setDepartmentId(form.getDepartmentId());
-		empEntForm.setDeleteFlg(form.getDeleteFlg());
 		empEntForm.setStatus(form.getStatus());
-		empEntForm.setUpdatedAt(form.getUpdatedAt());
+		
+		empEntForm.setDeleteFlg("0"); // 削除フラグを未削除(0)に
+	    
+	    // 現在日時をセット
+	    Timestamp now = new Timestamp(System.currentTimeMillis());
+	    empEntForm.setCreatedAt(now); 
+	    empEntForm.setUpdatedAt(now);
 		
 		employeeMapper.registMem(empEntForm);
+	}
+	
+	
+	
+	/**詳細登録用
+	 * @param form
+	 */
+	public void registDetailMember(EmployeeForm form) {
+		EmployeeDeitalInfEntity empEnt = new EmployeeDeitalInfEntity();
+		empEnt.setEmployeeId(form.getEmployeeId());
+		empEnt.setEmail(form.getEmail());
+		empEnt.setExtensionNumber(form.getExtensionNumber());
+		empEnt.setHireDate(form.getHireDate());
+		empEnt.setMemo(form.getMemo());
+		
+		System.out.println(form.getEmployeeId());
+		
+		employeeMapper.registDetailMem(empEnt);
 	}
 
 	
@@ -92,6 +117,39 @@ public class EmployeeService {
         }
 		
 		return empDetailForm;
+	}
+	
+	/**·削除用
+	 * @param employeeId
+	 */
+	public void logicalDelete(String employeeId) {
+		
+		// 現在日時をセット
+	    Timestamp now = new Timestamp(System.currentTimeMillis());
+	    
+	    employeeMapper.delete(employeeId,now);
+	}
+	
+	/**更新基本
+	 * @param employeeId
+	 */
+	public void updateBasic(EmployeeForm empForm) {
+		
+		// 現在日時をセット
+	    Timestamp now = new Timestamp(System.currentTimeMillis());
+	    
+	    employeeMapper.updateBasic(empForm, now);
+	}
+	
+	/**更新詳細
+	 * @param employeeId
+	 */
+	public void updateDetail(EmployeeForm empForm) {
+		
+		// 現在日時をセット
+	    Timestamp now = new Timestamp(System.currentTimeMillis());
+	    
+	    employeeMapper.updateDetail(empForm, now);
 	}
 	
 	
