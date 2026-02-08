@@ -25,10 +25,10 @@ public class F004_EmployeeUpdateController {
 	 */
 	@RequestMapping("/edit")
 	
-	public String edit(String emplooyeeId,Model model) {
+	public String edit(String employeeId,Model model) {
 		
-		EmployeeForm employeeEnt = employeeservice.detailMember(emplooyeeId);
-		model.addAttribute(employeeEnt);
+		EmployeeForm editForm = employeeservice.detailMember(employeeId);
+		model.addAttribute(editForm);
 		
 		return "editFinish";
 	}
