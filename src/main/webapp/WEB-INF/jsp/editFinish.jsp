@@ -9,11 +9,13 @@
 <body>
     <h1>職員編集画面</h1>
     
+    <h3>基本情報</h3>
+    
     <form action="update" method="post">
         
         <div>
             <label>社員番号（変更不可）</label>
-            <input type="text" name="employeeId" value="${editForm.employeeId}" readonly>
+            <input type="text" name="employeeId" value="${editForm.employeeId}" readonly style="background-color: #e9e9e9;">
         </div>
 
         <div>
@@ -34,8 +36,12 @@
                 <option value="2" ${editForm.status == '2' ? 'selected' : ''}>退職</option>
             </select>
         </div>
+        
+        <div>
+        	<label>所属部署</label>
+        	<input type="text" name="departmentId" value="${editForm.department}">
+        </div>
 
-        <hr>
         <h3>詳細情報</h3>
         <div>
             <label>メールアドレス</label>

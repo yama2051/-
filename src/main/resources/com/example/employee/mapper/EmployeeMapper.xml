@@ -9,6 +9,8 @@
 		<id column="employee_id" property="employeeId"></id>
 		<result column="last_name" property="lastName"></result>
 		<result column="first_name" property="firstName"></result>
+		<result column="department_id" property="departmentId"></result>
+		<result column="department" property="department"></result>
 		<result column="status" property="status"></result>
 		<result column="delete_flg" property="deleteFlg"></result>
 		<result column="created_at" property="createdAt"></result>
@@ -48,8 +50,8 @@
 	
 	<!--登録用-->
 	<insert id="registMem">
-		INSERT INTO EMPLOYEE(employee_id,last_name,first_name,status,delete_flg,created_at,updated_at)
-		VALUES(#{employeeId},#{lastName},#{firstName},#{status},#{deleteFlg},#{createdAt},#{updatedAt})
+		INSERT INTO EMPLOYEE(employee_id,last_name,first_name,status,delete_flg,department_id,department,created_at,updated_at)
+		VALUES(#{employeeId},#{lastName},#{firstName},#{status},#{deleteFlg},"{departmentId}",#{department},#{createdAt},#{updatedAt})
 	</insert>
 	
 	<insert id="registDetailMem">
@@ -72,24 +74,25 @@
 	<update id="updateBasic">
 	UPDATE employee
     SET
-        last_name = #{lastName},
-        first_name = #{firstName},
-        department_id = #{departmentId},
-        status = #{status},
+        last_name = #{empForm.lastName},
+        first_name = #{empForm.firstName},
+        department_id = #{empForm.departmentId},
+        department = #{empForm.department},
+        status = #{empForm.status},
         updated_at = CURRENT_TIMESTAMP
     WHERE
-        employee_id = #{employeeId}
+        employee_id = #{empForm.employeeId}
 	</update>
 	
 	<update id="updateDetail">
 	UPDATE employee_details
     SET
-        email = #{email},
-        extension_number = #{extensionNumber},
-        hire_date = #{hireDate}::date,
-        memo = #{memo}
+        email = #{empForm.email},
+        extension_number = #{empForm.extensionNumber},
+        hire_date = #{empForm.hireDate}::date,
+        memo = #{empForm.memo}
     WHERE
-        employee_id = #{employeeId}
+        employee_id = #{empForm.employeeId}
 	
 	</update>
 	
@@ -100,6 +103,7 @@
         e.last_name,
         e.first_name,
         e.department_id,
+        e.department,
         e.status,
         ed.email,
         ed.extension_number,

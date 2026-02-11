@@ -15,6 +15,7 @@ public class EmployeeEntity {
 	private String deleteFlg;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
+	private String department;
 	
 	public void setName(String string) {
 		// TODO 自動生成されたメソッド・スタブ
@@ -23,5 +24,7 @@ public class EmployeeEntity {
 	
 	//詳細情報
 	private EmployeeDeitalInfEntity detail;
+
+
 	
 }

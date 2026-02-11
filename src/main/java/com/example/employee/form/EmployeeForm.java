@@ -18,6 +18,7 @@ public class EmployeeForm {
 	private String deleteFlg;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
+	private String department;
 	
 	// --- 詳細情報（employee_detailsテーブル） ---
     private String email;           // メールアドレス

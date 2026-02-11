@@ -27,7 +27,7 @@
 					<tr>
 						<td>${emp.employeeId}</td>
 						<td>${emp.lastName}${emp.firstName}</td>
-						<td>${emp.departmentId}</td>
+						<td>${emp.department}</td>
 						<td>
 							<c:choose>
                    				<c:when test="${emp.status == '0'}">在職</c:when>

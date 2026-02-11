@@ -30,7 +30,7 @@
 		<div id="baseDepartmentInfo">
 			<h2>所属情報</h2>
 				<h3>部署名</h3>
-					<div>${detailForm.departmentId }</div>
+					<div>${detailForm.department}</div>
 				<h3>在職区分</h3>
 					<div class="info-value">
                 		<c:choose>

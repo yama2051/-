@@ -29,7 +29,22 @@ public class EmployeeService {
 	 */
 	public EmployeeLoginEntity findPassOfLogin(String employeeId) {
 		EmployeeLoginEntity loginEntity = employeeLoginMapper.findPass(employeeId);
+
 		return loginEntity;
+	}
+	
+	public String chekuError(String employeeId,String password) {
+		EmployeeLoginEntity loginEntity = employeeLoginMapper.findPass(employeeId);
+		
+		if(loginEntity == null) {
+			return "社員が存在していません。再度確認をお願いします。";
+		}
+		
+		if(!loginEntity.getPassword().equals(password)) {
+			return "パスワードが違います。再度入力をお願いします。";
+		}
+		
+		return null;
 	}
 	
 	
@@ -57,6 +72,8 @@ public class EmployeeService {
 		empEntForm.setEmployeeId(form.getEmployeeId());
 		empEntForm.setDepartmentId(form.getDepartmentId());
 		empEntForm.setStatus(form.getStatus());
+		
+		empEntForm.setDepartment(convertId(form.getDepartmentId()));
 		
 		empEntForm.setDeleteFlg("0"); // 削除フラグを未削除(0)に
 	    
@@ -106,6 +123,7 @@ public class EmployeeService {
 		empDetailForm.setFirstName(detailEnt.getFirstName());
 		empDetailForm.setDepartmentId(detailEnt.getDepartmentId());
 		empDetailForm.setStatus(detailEnt.getStatus());
+		empDetailForm.setDepartment(detailEnt.getDepartment());
         
         // 詳細情報（employee_detailsテーブル分）
         // Entityを分けた場合は entity.getDetail().getEmail() のように取得
@@ -135,6 +153,9 @@ public class EmployeeService {
 	 */
 	public void updateBasic(EmployeeForm empForm) {
 		
+		//部署変換
+		empForm.setDepartment(convertId(empForm.getDepartmentId()));
+		
 		// 現在日時をセット
 	    Timestamp now = new Timestamp(System.currentTimeMillis());
 	    
@@ -151,6 +172,31 @@ public class EmployeeService {
 	    
 	    employeeMapper.updateDetail(empForm, now);
 	}
+	
+	
+	/**部署IDを変換する処理
+	 * @param departId
+	 * @return
+	 */
+	private String convertId(String departId) {
+		
+		if(departId == null) {
+			return null;
+		}
+		
+		switch (departId) {
+        	case "D01": return "開発部";
+        	case "D02": return "営業部";
+        	case "D03": return "人事部";
+        	case "D04": return "総務部";
+        	case "D05": return "経理部";
+        	case "D11": return "企画部";
+        
+        	default: return null;
+		}
+	}
+
+
 	
 	
 	

@@ -28,7 +28,7 @@ public class F004_EmployeeUpdateController {
 	public String edit(String employeeId,Model model) {
 		
 		EmployeeForm editForm = employeeservice.detailMember(employeeId);
-		model.addAttribute(editForm);
+		model.addAttribute("editForm",editForm);
 		
 		return "editFinish";
 	}
@@ -38,7 +38,6 @@ public class F004_EmployeeUpdateController {
 		
 		employeeservice.updateBasic(empForm);
 		employeeservice.updateDetail(empForm);
-		
 		return "redirect:/search";
 	}
 	

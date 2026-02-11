@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.employee.entity.EmployeeLoginEntity;
 import com.example.employee.form.EmployeeLoginForm;
@@ -27,15 +28,15 @@ public class F000_LoginController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(EmployeeLoginForm loginForm,Model model) {
-		
-		/*		System.out.println("入力されたID: " + loginForm.getEmployeeId());
-		System.out.println("入力されたPW: " + loginForm.getPassword());*/
-		
+	public String login(EmployeeLoginForm loginForm,@RequestParam String employeeId, @RequestParam String password,Model model) {
+
 		EmployeeLoginEntity loginUser = employeeService.findPassOfLogin(loginForm.getEmployeeId());
 		
+		String errorMsg = employeeService.chekuError(employeeId, password);
+		
 		//職員の存在チェックとパスワードの一致チェック
-		if(loginUser == null || !loginUser.getPassword().equals(loginForm.getPassword())) {
+		if(errorMsg != null) {
+			model.addAttribute("errorMessage", errorMsg);
 			return "login";
 		}
 		
