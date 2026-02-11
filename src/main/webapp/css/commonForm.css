@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.error_message{
+	width: 100%;
+}
+
+.form_main{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;    
+	min-height: 80vh;
+}
+
+.page_title{
+	display: flex;
+	justify-content: center;
+}
+
+.employee_id{
+	display: block;
+}
+
+.password{
+	display: block;
+}
+
+/* ログインフォーム：ここを「決まった幅の箱」にする */
+.loginForm {
+    width: 350px;           /* ★箱の幅を固定する */
+    display: flex;          /* フォームの中身もFlexboxにする */
+    flex-direction: column; /* フォームの中身を縦に並べる */
+    padding: 20px;
+    border: 1px solid #ccc; /* 枠線をつけると箱らしくなります */
+    border-radius: 8px;
+}
