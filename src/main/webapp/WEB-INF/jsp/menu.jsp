@@ -22,7 +22,7 @@
             </form>
 
             <form action="${pageContext.request.contextPath}/init" method="get" style="margin:0">
-                <button type="submit" class="btn btn-back">ログアウト（ログイン画面へ）</button>
+                <button type="submit" class="btn btn-back">ログアウト</button>
             </form>
         </div>
 

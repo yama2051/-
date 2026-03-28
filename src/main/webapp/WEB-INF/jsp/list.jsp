@@ -50,8 +50,11 @@
 	</main>
 	
 	<footer>
-		<form action="register" method="post">
+		<form action="register" method="post" style="display:inline-block;margin-right:8px;">
 			<button type="submit" >登録</button>	
+		</form>
+		<form action="${pageContext.request.contextPath}/menu" method="get" style="display:inline-block;">
+			<button type="submit" class="btn btn-back">メニューへ戻る</button>
 		</form>
 	</footer>
 </body>

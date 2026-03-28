@@ -39,5 +39,11 @@
 		</section>
 	</main>
 	
+	<footer>
+		<form action="${pageContext.request.contextPath}/menu" method="get" style="display:inline-block;">
+			<button type="submit" class="btn btn-back">メニューへ戻る</button>
+		</form>
+	</footer>
+	
 </body>
 </html>

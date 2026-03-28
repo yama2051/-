@@ -42,4 +42,9 @@ public class F000_LoginController {
 		
 		return "menu";
 	}
+
+	@RequestMapping("/menu")
+	public String menu() {
+		return "menu";
+	}
 }
