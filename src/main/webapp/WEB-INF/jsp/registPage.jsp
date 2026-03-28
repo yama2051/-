@@ -15,6 +15,7 @@
     }
     h2 { border-left: 5px solid #333; padding-left: 10px; margin-top: 30px; }
     .button-group { margin-top: 20px; }
+    .error-box { color: #b91c1c; background:#fff1f2; padding:10px;border:1px solid #fecaca;border-radius:6px;margin-bottom:12px; }
 </style>
 </head>
 <body>
@@ -25,25 +26,29 @@
     <main>
         <form action="registFinish" method="post" accept-charset="UTF-8">
             
+            <c:if test="${not empty errorMessage}">
+                <div class="error-box">${errorMessage}</div>
+            </c:if>
+            
             <h2>基本情報</h2>
             <div class="form-group">
                 <label>社員番号</label>
-                <input type="text" name="employeeId" required placeholder="例: 1001">
+                <input type="text" name="employeeId" required placeholder="例: 1001" maxlength="10">
             </div>
 
             <div class="form-group">
                 <label>姓</label>
-                <input type="text" name="lastName" required placeholder="例: 山田">
+                <input type="text" name="lastName" required placeholder="例: 山田" maxlength="100">
             </div>
 
             <div class="form-group">
                 <label>名</label>
-                <input type="text" name="firstName" required placeholder="例: 太郎">
+                <input type="text" name="firstName" required placeholder="例: 太郎" maxlength="100">
             </div>
 
             <div class="form-group">
                 <label>部署ID</label>
-                <input type="text" name="departmentId" placeholder="例: D01">
+                <input type="text" name="departmentId" placeholder="例: D01" maxlength="10">
             </div>
 
             <div class="form-group">
@@ -58,12 +63,12 @@
             <h2>詳細情報</h2>
             <div class="form-group">
                 <label>メールアドレス</label>
-                <input type="email" name="email" placeholder="example@mail.com">
+                <input type="email" name="email" placeholder="example@mail.com" maxlength="254">
             </div>
 
             <div class="form-group">
                 <label>内線番号</label>
-                <input type="text" name="extensionNumber" placeholder="例: 123-456">
+                <input type="text" name="extensionNumber" placeholder="例: 123-456" maxlength="50">
             </div>
 
             <div class="form-group">
@@ -73,7 +78,7 @@
 
             <div class="form-group">
                 <label>備考</label><br>
-                <textarea name="memo" rows="4" cols="50" placeholder="特別な事情がある場合のみ記載"></textarea>
+                <textarea name="memo" rows="4" cols="50" placeholder="特別な事情がある場合のみ記載" maxlength="2000"></textarea>
             </div>
 
             <div class="button-group">

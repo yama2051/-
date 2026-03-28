@@ -77,6 +77,14 @@ public class EmployeeService {
 		
 		empEntForm.setDeleteFlg("0"); // 削除フラグを未削除(0)に
 	    
+	    // 重複チェック: 既に同一の社員IDが存在する場合は例外を投げる
+	    if (empEntForm.getEmployeeId() != null && !empEntForm.getEmployeeId().isEmpty()) {
+	        EmployeeEntity exists = employeeMapper.findMemDetail(empEntForm.getEmployeeId());
+	        if (exists != null) {
+	            throw new IllegalStateException("社員番号は既に存在します。別の社員番号を指定してください。");
+	        }
+	    }
+	    
 	    // 現在日時をセット
 	    Timestamp now = new Timestamp(System.currentTimeMillis());
 	    empEntForm.setCreatedAt(now); 
@@ -91,12 +99,40 @@ public class EmployeeService {
 	 * @param form
 	 */
 	public void registDetailMember(EmployeeForm form) {
+		// サニタイズ・バリデーション
+		if (form == null) {
+			throw new IllegalStateException("登録情報が不正です。もう一度お試しください。");
+		}
+		String employeeId = form.getEmployeeId() == null ? "" : form.getEmployeeId().trim();
+		String email = form.getEmail() == null ? "" : form.getEmail().trim();
+		String extension = form.getExtensionNumber() == null ? "" : form.getExtensionNumber().trim();
+		String memo = form.getMemo() == null ? "" : form.getMemo().trim();
+		
+		// DB カラム長を想定した上限チェック（安全側の値を設定）
+		int EMP_ID_MAX = 10;       // employee.employee_id が character varying(10) のため
+		int EMAIL_MAX = 254;       // RFC 的な上限を想定
+		int EXT_MAX = 50;          // 内線や電話番号を想定
+		int MEMO_MAX = 2000;       // 備考は長めに許容
+		
+		if (employeeId.length() > EMP_ID_MAX) {
+			throw new IllegalStateException("社員番号は" + EMP_ID_MAX + "文字以内で入力してください。");
+		}
+		if (email.length() > EMAIL_MAX) {
+			throw new IllegalStateException("メールアドレスが長すぎます（上限 " + EMAIL_MAX + " 文字）。");
+		}
+		if (extension.length() > EXT_MAX) {
+			throw new IllegalStateException("内線番号が長すぎます（上限 " + EXT_MAX + " 文字）。");
+		}
+		if (memo.length() > MEMO_MAX) {
+			throw new IllegalStateException("備考が長すぎます（上限 " + MEMO_MAX + " 文字）。");
+		}
+		
 		EmployeeDeitalInfEntity empEnt = new EmployeeDeitalInfEntity();
-		empEnt.setEmployeeId(form.getEmployeeId());
-		empEnt.setEmail(form.getEmail());
-		empEnt.setExtensionNumber(form.getExtensionNumber());
+		empEnt.setEmployeeId(employeeId);
+		empEnt.setEmail(email);
+		empEnt.setExtensionNumber(extension);
 		empEnt.setHireDate(form.getHireDate());
-		empEnt.setMemo(form.getMemo());
+		empEnt.setMemo(memo);
 		
 		System.out.println(form.getEmployeeId());
 		
