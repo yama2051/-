@@ -13,6 +13,7 @@ public class EmployeeSearchForm {
 	private String employeeId;
 	private String lastName;
 	private String firstName;
+	private String email; // 追加: メールで検索可能にする
 	private String departmentId;
 	private String status;
 	private String deleteFlg;

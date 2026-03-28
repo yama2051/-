@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
     <title>[Gxxx]職員編集画面</title>
 </head>
 <body>

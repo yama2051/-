@@ -35,4 +35,10 @@ public class F001_EmployeeSearchController {
 		return "list";
 	}
 
+	/** 検索画面表示 */
+	@RequestMapping("/searchPage")
+	public String showSearchPage() {
+		return "search";
+	}
+
 }

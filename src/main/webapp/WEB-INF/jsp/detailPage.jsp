@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
 <title>職員詳細画面</title>
 </head>
 <body>

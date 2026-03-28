@@ -23,27 +23,41 @@
         	<result column="hire_date" property="hireDate" />
         	<result column="memo" property="memo" />
     	</association>
-    	
+		
 	</resultMap>
 	
 	<!--検索用（全件取得）-->
 	<select	id="findAll" resultMap="DetailedEmployeeResultMap">
 		SELECT 
-        	* FROM 
-        employee
+        	e.*, ed.email, ed.extension_number, ed.hire_date, ed.memo
+        FROM 
+        employee e
+        LEFT JOIN employee_details ed ON e.employee_id = ed.employee_id
     	<where>
-       	 delete_flg = '0'
+        	 e.delete_flg = '0'
 
         <if test="employeeId != null and employeeId != ''">
-            AND employee_id = #{employeeId}
+            AND e.employee_id = #{employeeId}
         </if>
 
         <if test="lastName != null and lastName != ''">
-            AND last_name LIKE CONCAT('%', #{lastName}, '%')
+            AND e.last_name LIKE CONCAT('%', #{lastName}, '%')
+        </if>
+
+        <if test="firstName != null and firstName != ''">
+            AND e.first_name LIKE CONCAT('%', #{firstName}, '%')
         </if>
 
         <if test="departmentId != null and departmentId != ''">
-            AND department_id = #{departmentId}
+            AND e.department_id = #{departmentId}
+        </if>
+
+        <if test="email != null and email != ''">
+            AND ed.email LIKE CONCAT('%', #{email}, '%')
+        </if>
+
+        <if test="status != null and status != ''">
+            AND e.status = #{status}
         </if>
     </where>
 	</select>

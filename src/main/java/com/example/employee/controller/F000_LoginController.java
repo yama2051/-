@@ -40,6 +40,6 @@ public class F000_LoginController {
 			return "login";
 		}
 		
-		return "search";
+		return "menu";
 	}
 }

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
 <title>[G002]社員一覧</title>
 </head>
 <body>
@@ -30,8 +31,8 @@
 						<td>${emp.department}</td>
 						<td>
 							<c:choose>
-                   				<c:when test="${emp.status == '0'}">在職</c:when>
-                   			 	<c:when test="${emp.status == '1'}">休職</c:when>
+                    			<c:when test="${emp.status == '0'}">在職</c:when>
+                    	 		<c:when test="${emp.status == '1'}">休職</c:when>
                     			<c:otherwise>退職</c:otherwise>
                 			</c:choose>
 						</td>

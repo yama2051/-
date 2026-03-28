@@ -1,36 +1,87 @@
 @charset "UTF-8";
 
-.error_message{
-	width: 100%;
+/* Unified site styles for employee app */
+:root{
+  --bg:#f7f9fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --primary:#0b5ed7; /* blue */
+  --primary-600:#084ea8;
+  --danger:#dc3545;
+  --border:#e6eef8;
+  --radius:6px;
+  --max-width:980px;
+  --accent:#0d9488; /* teal */
+  --text:#111827;
 }
 
-.form_main{
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;    
-	min-height: 80vh;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Noto Sans JP", "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-.page_title{
-	display: flex;
-	justify-content: center;
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:18px;
 }
 
-.employee_id{
-	display: block;
+header{
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  color:white;
+  padding:18px 24px;
+  border-radius:var(--radius);
+  margin-bottom:18px;
 }
+header h1{margin:0;font-size:20px;font-weight:600}
 
-.password{
-	display: block;
+main{display:block;padding:18px;background:var(--card);border-radius:var(--radius);border:1px solid var(--border)}
+
+h2{font-size:16px;margin:10px 0 8px;color:var(--primary-600)}
+h3{font-size:13px;margin:6px 0;color:var(--muted)}
+
+#detailMain > div{padding:12px;border-radius:4px;background:linear-gradient(180deg,rgba(13,110,253,0.03),transparent);margin-bottom:12px}
+
+.info-value{padding:8px 10px;background:transparent;border-radius:4px}
+
+/* Simple responsive two-column rows */
+.row{display:flex;gap:18px;flex-wrap:wrap}
+.col{flex:1;min-width:220px}
+
+footer{margin-top:14px;display:flex;justify-content:flex-end}
+
+.button-group{display:flex;gap:10px}
+button, .btn{appearance:none;border:0;padding:10px 14px;border-radius:6px;cursor:pointer;font-weight:600}
+.btn-back{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-edit{background:var(--primary);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+button:disabled, .btn[disabled]{opacity:0.6;cursor:not-allowed}
+
+/* Forms */
+form label{display:block;margin-bottom:6px;color:var(--muted);font-size:13px}
+input[type=text], input[type=password], input[type=email], select, textarea{
+  width:100%;padding:10px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);
 }
+textarea{min-height:120px}
 
-/* ログインフォーム：ここを「決まった幅の箱」にする */
-.loginForm {
-    width: 350px;           /* ★箱の幅を固定する */
-    display: flex;          /* フォームの中身もFlexboxにする */
-    flex-direction: column; /* フォームの中身を縦に並べる */
-    padding: 20px;
-    border: 1px solid #ccc; /* 枠線をつけると箱らしくなります */
-    border-radius: 8px;
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+th{background:#fbfdff;color:var(--muted);font-weight:600}
+
+/* Accessibility helpers */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media (max-width:640px){
+  .container{padding:12px;margin:14px}
+  header h1{font-size:18px}
+  footer{justify-content:center}
+  .button-group{flex-direction:column;width:100%}
+  button{width:100%}
 }

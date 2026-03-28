@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
 <title>職員登録画面</title>
 <style>
     .form-group { margin-bottom: 15px; }

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
 <title>G004 登録成功</title>
 </head>
 <body>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
 <title>[G001] 社員検索画面</title>
 </head>
 <body>
@@ -31,9 +32,9 @@
 				<input type="radio" value="1" name="status">在職
 				<input type="radio" value="2" name="status">退職済
 				<input type="radio" value="3" name="status">休職・育休
-				<button type="subimit" name="action" value="search">検索</button>
-				<button type="submit" name="action" value="regist" formacation="register">登録</button>
-				<button type="submit" name="action" value="delete" formacation="delete">削除</button>
+				<button type="submit" name="action" value="search">検索</button>
+				<button type="submit" name="action" value="regist" formaction="register">登録</button>
+				<button type="submit" name="action" value="delete" formaction="delete">削除</button>
 			</form>
 		</section>
 	</main>
