@@ -65,7 +65,7 @@
 	<!--登録用-->
 	<insert id="registMem">
 		INSERT INTO EMPLOYEE(employee_id,last_name,first_name,status,delete_flg,department_id,department,created_at,updated_at)
-		VALUES(#{employeeId},#{lastName},#{firstName},#{status},#{deleteFlg},"{departmentId}",#{department},#{createdAt},#{updatedAt})
+		VALUES(#{employeeId},#{lastName},#{firstName},#{status},#{deleteFlg},#{departmentId},#{department},#{createdAt},#{updatedAt})
 	</insert>
 	
 	<insert id="registDetailMem">

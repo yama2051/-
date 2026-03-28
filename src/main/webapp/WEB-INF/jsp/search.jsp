@@ -23,15 +23,17 @@
 				<input type="text" name="firstName">
 				<select name="departmentId">
 					<option value="">選択してください。</option>
-					<option value="営業部">営業部</option>
-					<option value="経理部">経理部</option>
-					<option value="総務部">総務部</option>
-					<option value="法務部">法務部</option>
+					<option value="D01">開発部</option>
+					<option value="D02">営業部</option>
+					<option value="D03">人事部</option>
+					<option value="D04">総務部</option>
+					<option value="D05">経理部</option>
+					<option value="D11">企画部</option>
 				</select>
 				<label>在職区分</label>
-				<input type="radio" value="1" name="status">在職
+				<input type="radio" value="0" name="status">在職
 				<input type="radio" value="2" name="status">退職済
-				<input type="radio" value="3" name="status">休職・育休
+				<input type="radio" value="1" name="status">休職・育休
 				<button type="submit" name="action" value="search">検索</button>
 				<button type="submit" name="action" value="regist" formaction="register">登録</button>
 				<button type="submit" name="action" value="delete" formaction="delete">削除</button>
