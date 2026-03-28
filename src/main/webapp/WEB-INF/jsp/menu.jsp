@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/commonForm.css">
-<title>メニュー</title>
+<title>[GM000]menue</title>
 </head>
 <body>
     <header>
